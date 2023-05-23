@@ -5,6 +5,8 @@ import { Book } from '../types/Book';
 export const Dashboard: React.FC = () => {
   const [filter, setFilter] = useState('active');
   const [books, setBooks] = useState<Book[]>([]);
+  const [totalRecords, setTotalRecords] = useState(0);
+  const [filteredRecords, setFilteredRecords] = useState(0);
 
   useEffect(() => {
     loadBooks();
@@ -21,7 +23,14 @@ export const Dashboard: React.FC = () => {
 
     fetch(url)
       .then(response => response.json())
-      .then(data => setBooks(data));
+      .then(data => {
+        setBooks(data);
+        setFilteredRecords(data.length);
+      });
+
+    fetch('http://localhost:3000/books')
+      .then(response => response.json())
+      .then(data => setTotalRecords(data.length));
   };
 
   const deleteBook = (id: number) => {
@@ -50,6 +59,10 @@ export const Dashboard: React.FC = () => {
         <option value="active">Show Active</option>
         <option value="deactivated">Show Deactivated</option>
       </select>
+
+      <p>
+        Showing {filteredRecords} of {totalRecords} records.
+      </p>
 
       <Table
         books={books}
