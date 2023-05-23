@@ -55,8 +55,8 @@ export const BookForm: React.FC = () => {
       author: '',
       category: '',
       isbn: '',
-      createdAt: new Date(),
-      editedAt: new Date(),
+      createdAt: null,
+      editedAt: null,
       isActive: true,
     });
   };
