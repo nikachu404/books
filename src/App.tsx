@@ -1,13 +1,17 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import './App.css';
+import { Navigation } from './components/Navigation/Navigation';
+import './App.scss';
 
 export const App: React.FC = () => {
   return (
-    <>
-      <div>Hello</div>
-      <Outlet />
-    </>
+    <div className='App'>
+      <Navigation />
+
+      <div className="App__main">
+        <Outlet />
+      </div>
+    </div>
   );
 };
 
