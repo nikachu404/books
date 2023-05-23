@@ -1,0 +1,22 @@
+{
+  "books": [
+    {
+      "id": 1,
+      "title": "Book 1",
+      "author": "Author 1",
+      "category": "Category 1",
+      "isbn": "1234567890",
+      "createdAt": "2022-03-12T08:35:00Z",
+      "modifiedAt": "2022-03-13T13:48:00Z"
+    },
+    {
+      "id": 2,
+      "title": "Book 2",
+      "author": "Author 2",
+      "category": "Category 2",
+      "isbn": "0987654321",
+      "createdAt": "2022-05-20T11:15:00Z",
+      "modifiedAt": "2022-05-21T09:30:00Z"
+    }
+  ]
+}
