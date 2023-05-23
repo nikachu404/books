@@ -7,9 +7,18 @@ import './Table.scss';
 type Props = {
   books: Book[];
   onDeleteBook: (id: number) => void;
+  onToggleActive: (id: Book, isActive: boolean) => void;
 };
 
-export const Table: React.FC<Props> = ({ books, onDeleteBook }) => {
+export const Table: React.FC<Props> = ({
+  books,
+  onDeleteBook,
+  onToggleActive,
+}) => {
+  const handleToggleActivation = (book: Book, isActive: boolean) => {
+    onToggleActive(book, isActive);
+  };
+
   return (
     <table className="table">
       <thead>
@@ -25,7 +34,7 @@ export const Table: React.FC<Props> = ({ books, onDeleteBook }) => {
       </thead>
       <tbody>
         {books.map(item => (
-          <tr key={item.id}>
+          <tr key={item.id} className={item.isActive ? '' : 'deactivated'}>
             <td>{item.title}</td>
             <td>{item.author}</td>
             <td>{item.category}</td>
@@ -37,7 +46,15 @@ export const Table: React.FC<Props> = ({ books, onDeleteBook }) => {
             <td className="table__buttons">
               <Link to={`/edit/${item.id}`}>Edit</Link>
               <button onClick={() => onDeleteBook(item.id)}>Delete</button>
-              <button>Deactivate/Re-Activate</button>
+              {item.isActive ? (
+                <button onClick={() => handleToggleActivation(item, false)}>
+                  Deactivate
+                </button>
+              ) : (
+                <button onClick={() => handleToggleActivation(item, true)}>
+                  Re-Activate
+                </button>
+              )}
             </td>
           </tr>
         ))}
