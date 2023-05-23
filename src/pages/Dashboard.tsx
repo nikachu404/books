@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Table } from '../components/Table/Table';
 import { Book } from '../types/Book';
-import axios from 'axios';
 
 export const Dashboard: React.FC = () => {
   const [filter, setFilter] = useState('active');
@@ -20,20 +19,24 @@ export const Dashboard: React.FC = () => {
       url += '?isActive=false';
     }
 
-    axios.get(url).then(res => setBooks(res.data));
+    fetch(url)
+      .then(response => response.json())
+      .then(data => setBooks(data));
   };
 
   const deleteBook = (id: number) => {
-    axios.delete(`http://localhost:3000/books/${id}`).then(() => loadBooks());
+    fetch(`http://localhost:3000/books/${id}`, { method: 'DELETE' })
+      .then(() => loadBooks());
   };
 
   const toggleActivation = (book: Book, isActive: boolean) => {
-    axios
-      .put(`http://localhost:3000/books/${book.id}`, {
-        ...book,
-        isActive: isActive,
-      })
-      .then(() => loadBooks());
+    fetch(`http://localhost:3000/books/${book.id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ ...book, isActive: isActive }),
+    }).then(() => loadBooks());
   };
 
   const handleFilterChange = (e: React.ChangeEvent<HTMLSelectElement>) => {

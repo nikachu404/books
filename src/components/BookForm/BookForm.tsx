@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
 import { Book } from '../../types/Book';
 
 export const BookForm: React.FC = () => {
@@ -19,9 +18,9 @@ export const BookForm: React.FC = () => {
 
   useEffect(() => {
     if (id) {
-      axios
-        .get(`http://localhost:3000/books/${id}`)
-        .then(res => setBook(res.data));
+      fetch(`http://localhost:3000/books/${id}`)
+        .then(response => response.json())
+        .then(data => setBook(data));
     }
   }, [id]);
 
@@ -37,17 +36,17 @@ export const BookForm: React.FC = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (id) {
-      axios.put(`http://localhost:3000/books/${id}`, {
-        ...book,
-        editedAt: new Date(),
-      });
-    } else {
-      axios.post('http://localhost:3000/books', {
-        ...book,
-        createdAt: new Date(),
-      });
-    }
+    const requestOptions: RequestInit = {
+      method: id ? 'PUT' : 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(
+        id
+          ? { ...book, editedAt: new Date() }
+          : { ...book, createdAt: new Date() }
+      ),
+    };
+
+    fetch(`http://localhost:3000/books${id ? `/${id}` : ''}`, requestOptions);
 
     setBook({
       id: 0,
