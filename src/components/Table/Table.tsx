@@ -1,8 +1,8 @@
 import React from 'react';
-import './Table.scss';
 import moment from 'moment';
 import { Book } from '../../types/Book';
 import { Link } from 'react-router-dom';
+import './Table.scss';
 
 type Props = {
   books: Book[];
@@ -32,9 +32,9 @@ export const Table: React.FC<Props> = ({ books, onDeleteBook }) => {
             <td>{item.isbn}</td>
             <td>{moment(item.createdAt).format('LL LT')}</td>
             <td>
-              {item.modifiedAt ? moment(item.modifiedAt).format('LL LT') : '--'}
+              {item.editedAt ? moment(item.editedAt).format('LL LT') : '--'}
             </td>
-            <td>
+            <td className="table__buttons">
               <Link to={`/edit/${item.id}`}>Edit</Link>
               <button onClick={() => onDeleteBook(item.id)}>Delete</button>
               <button>Deactivate/Re-Activate</button>
