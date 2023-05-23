@@ -1,0 +1,11 @@
+.App {
+  min-height: 100vh;
+  background-color: #f8f4f0;
+  
+  &__main {
+    height: 100%;
+    padding: 30px;
+
+    overflow-y: hidden;
+  }
+}

@@ -1,0 +1,46 @@
+.navigation {
+  background-color: #fefefe;
+
+  &__container {
+    padding: 15px 30px;
+  }
+
+  &__nav-list {
+    display: flex;
+    gap: 30px;
+
+    padding: 0;
+    margin: 0;
+
+    list-style: none;
+    color: #9197B3;
+  }
+
+  &__nav-item {
+    display: flex;
+    flex-direction: row;
+
+    height: 46px;
+    border-radius: 8px;
+    align-items: stretch;
+  }
+
+  &__nav-link {
+    font-size: 24px;
+    font-weight: bold;
+    color: #958f97;
+    text-decoration: none;
+
+
+    &--selected {
+      color: #8d6c9f;
+      text-decoration: underline;
+    }
+  }
+
+  &__icon {
+    height: 50px;
+    width: 50px;
+    margin-right: 5px;
+  }
+}
