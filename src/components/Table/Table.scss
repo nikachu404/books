@@ -10,6 +10,11 @@
   @media (max-width: 575px) {
     padding: 15px;
   }
+
+  &__buttons {
+    display: flex;
+    justify-content: space-between;
+  }
 }
 
 td {
