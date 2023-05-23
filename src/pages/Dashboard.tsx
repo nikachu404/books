@@ -5,11 +5,19 @@ import axios from 'axios';
 
 export const Dashboard: React.FC = () => {
   const [filter, setFilter] = useState('active');
-  const [books, setBooks] =  useState<Book[]>([]);
+  const [books, setBooks] = useState<Book[]>([]);
 
   useEffect(() => {
-    axios.get('http://localhost:3000/books').then(res => setBooks(res.data))
+    loadBooks();
   }, []);
+
+  const loadBooks = () => {
+    axios.get('http://localhost:3000/books').then(res => setBooks(res.data));
+  };
+
+  const deleteBook = (id: number) => {
+    axios.delete(`http://localhost:3000/books/${id}`).then(() => loadBooks());
+  };
 
   const handleFilterChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setFilter(e.target.value);
@@ -23,7 +31,7 @@ export const Dashboard: React.FC = () => {
         <option value="deactivated">Show Deactivated</option>
       </select>
 
-      <Table books={books}/>
+      <Table books={books} onDeleteBook={deleteBook} />
     </>
-  )
-}
+  );
+};
