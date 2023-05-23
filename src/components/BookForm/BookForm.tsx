@@ -12,8 +12,9 @@ export const BookForm: React.FC = () => {
     author: '',
     category: '',
     isbn: '',
-    createdAt: new Date(),
-    modifiedAt: new Date(),
+    createdAt: null,
+    editedAt: null,
+    isActive: true,
   });
 
   useEffect(() => {
@@ -36,15 +37,16 @@ export const BookForm: React.FC = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const updatedBook = {
-      ...book,
-      modifiedAt: new Date(),
-    };
-
     if (id) {
-      axios.put(`http://localhost:3000/books/${id}`, updatedBook);
+      axios.put(`http://localhost:3000/books/${id}`, {
+        ...book,
+        editedAt: new Date(),
+      });
     } else {
-      axios.post('http://localhost:3000/books', updatedBook);
+      axios.post('http://localhost:3000/books', {
+        ...book,
+        createdAt: new Date(),
+      });
     }
 
     setBook({
@@ -54,7 +56,8 @@ export const BookForm: React.FC = () => {
       category: '',
       isbn: '',
       createdAt: new Date(),
-      modifiedAt: new Date(),
+      editedAt: new Date(),
+      isActive: true,
     });
   };
 
