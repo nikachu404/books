@@ -89,10 +89,12 @@ export const BookForm: React.FC = () => {
           value={book.category}
           onChange={handleChange}
           required>
-          <option value="">Select a category</option>
-          <option value="Category 1">Category 1</option>
-          <option value="Category 2">Category 2</option>
-          <option value="Category 3">Category 3</option>
+          <option value="" disabled>Select a category</option>
+          <option value="Fantasy">Fantasy</option>
+          <option value="Science Fiction">Science Fiction</option>
+          <option value="Mystery">Mystery</option>
+          <option value="Romance">Romance</option>
+          <option value="Thriller">Thriller</option>
         </select>
       </div>
       <div>
