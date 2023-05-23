@@ -1,7 +1,12 @@
 import React from 'react';
+import { BookForm } from '../components/BookForm/BookForm';
 
 export const AddBook: React.FC = () => {
   return (
-    <div>AddBook</div>
-  )
-}
+    <>
+      <div>AddBook</div>
+
+      <BookForm />
+    </>
+  );
+};
