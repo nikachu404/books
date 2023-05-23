@@ -14,6 +14,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <Route path="/" element={<App />}>
           <Route index element={<Dashboard />} />
           <Route path="add" element={<AddBook />} />
+          <Route path="edit/:id" element={<AddBook />} />
         </Route>
       </Routes>
     </HashRouter>
