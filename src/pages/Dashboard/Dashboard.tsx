@@ -11,6 +11,7 @@ export const Dashboard: React.FC = () => {
   const [books, setBooks] = useState<Book[]>([]);
   const [totalRecords, setTotalRecords] = useState(0);
   const [filteredRecords, setFilteredRecords] = useState(0);
+  const [fetchSuccess, setFetchSuccess] = useState(false);
 
   useEffect(() => {
     loadBooks();
@@ -30,16 +31,24 @@ export const Dashboard: React.FC = () => {
       .then(data => {
         setBooks(data);
         setFilteredRecords(data.length);
+        setFetchSuccess(true);
       })
       .catch(() => {
         setBooks([]);
         setFilteredRecords(0);
+        setFetchSuccess(false);
       });
 
     fetch(API_URL)
       .then(response => response.json())
-      .then(data => setTotalRecords(data.length))
-      .catch(() => setFilteredRecords(0));
+      .then(data => {
+        setTotalRecords(data.length);
+        setFetchSuccess(true);
+      })
+      .catch(() => {
+        setFilteredRecords(0);
+        setFetchSuccess(false);
+      });
   };
 
   const deleteBook = (id: number) => {
@@ -62,7 +71,7 @@ export const Dashboard: React.FC = () => {
 
   return (
     <div className="dashboard">
-      {books.length ? (
+      {fetchSuccess ? (
         <>
           <div className="dashboard__filter">
             <select
