@@ -1,0 +1,73 @@
+.book-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  width: 500px;
+
+  @media (max-width: 575px) {
+    width: 300px;
+  }
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  &__input {
+    padding: 0;
+    padding-left: 10px;
+    height: 40px;
+    border-width: 2px;
+    border-color: #ece8e5;
+    border-radius: 10px;
+    border-style: solid;
+  }
+
+  &__submit-button {
+    display: inline-block;
+    align-self: center;
+
+    width: 300px;
+    margin-top: 16px;
+    padding: 12px 24px;
+
+    border: none;
+    border-radius: 10px;
+
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+
+    color: #1e1d30;
+    background-color: #d2f36b;
+
+    cursor: pointer;
+
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      transform: scale(0.95);
+    }
+
+    @media (max-width: 768px) {
+      width: 150px;
+    }
+  }
+
+  &__message {
+    text-align: center;
+  }
+
+  &__error-message {
+    font-size: 14px;
+    color: #ff8777;
+  }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

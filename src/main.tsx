@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App.tsx';
 import { HashRouter, Routes, Route } from 'react-router-dom';
-import { Dashboard } from './pages/Dashboard.tsx';
-import { AddBook } from './pages/AddBook.tsx';
+
+import { App } from './App.tsx';
+import { Dashboard, AddBook } from './pages';
 
 import './index.scss';
 

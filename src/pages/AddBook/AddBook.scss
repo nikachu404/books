@@ -1,0 +1,54 @@
+.add-book {
+  display: flex;
+  flex-direction: column;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__home-link {
+    display: flex;
+    justify-content: flex-end;
+    position: fixed;
+    bottom: 40px;
+    right: 30px;
+    margin-top: 20px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 50%;
+    font-weight: 700;
+  }
+
+  &__home-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #d2f36b;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 50%;
+    font-weight: 700;
+    color: #1e1d30;
+    scale: 1;
+
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      transform: scale(1.15);
+    }
+  }
+
+  &__header {
+    margin-top: 0;
+  }
+
+  &__home-icon {
+    width: 20px;
+    height: 20px;
+  }
+}

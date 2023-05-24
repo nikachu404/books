@@ -1,11 +1,11 @@
 .App {
+  display: flex;
+  flex-direction: column;
   min-height: 100vh;
-  background-color: #f8f4f0;
-  
-  &__main {
-    height: 100%;
-    padding: 30px;
+  background-color: #f8f9f4;
 
-    overflow-y: hidden;
+  &__main {
+    flex: 1;
+    padding: 30px;
   }
 }
