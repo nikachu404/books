@@ -30,17 +30,20 @@ export const Dashboard: React.FC = () => {
       .then(data => {
         setBooks(data);
         setFilteredRecords(data.length);
+      })
+      .catch(() => {
+        setBooks([]);
+        setFilteredRecords(0);
       });
 
     fetch(API_URL)
       .then(response => response.json())
-      .then(data => setTotalRecords(data.length));
+      .then(data => setTotalRecords(data.length))
+      .catch(() => setFilteredRecords(0));
   };
 
   const deleteBook = (id: number) => {
-    fetch(`${API_URL}/${id}`, { method: 'DELETE' }).then(() =>
-      loadBooks(),
-    );
+    fetch(`${API_URL}/${id}`, { method: 'DELETE' }).then(() => loadBooks());
   };
 
   const toggleActivation = (book: Book, isActive: boolean) => {
@@ -59,27 +62,32 @@ export const Dashboard: React.FC = () => {
 
   return (
     <div className="dashboard">
-      <div className="dashboard__filter">
-        <select
-          id="filter"
-          value={filter}
-          onChange={handleFilterChange}
-          className="dashboard__filter-select">
-          <option value="all">Show All</option>
-          <option value="active">Show Active</option>
-          <option value="deactivated">Show Deactivated</option>
-        </select>
+      {books.length ? (
+        <>
+          <div className="dashboard__filter">
+            <select
+              id="filter"
+              value={filter}
+              onChange={handleFilterChange}
+              className="dashboard__filter-select">
+              <option value="all">Show All</option>
+              <option value="active">Show Active</option>
+              <option value="deactivated">Show Deactivated</option>
+            </select>
 
-        <p className="dashboard__filter-info">
-          Showing {filteredRecords} of {totalRecords} records.
-        </p>
-      </div>
-
-      <Table
-        books={books}
-        onDeleteBook={deleteBook}
-        onToggleActive={toggleActivation}
-      />
+            <p className="dashboard__filter-info">
+              Showing {filteredRecords} of {totalRecords} records.
+            </p>
+          </div>
+          <Table
+            books={books}
+            onDeleteBook={deleteBook}
+            onToggleActive={toggleActivation}
+          />
+        </>
+      ) : (
+        <p className="dashboard__no-books">No books ;(</p>
+      )}
 
       <Link to={'/add'} className="dashboard__add-link">
         <div className="dashboard__add-button">
