@@ -5,7 +5,7 @@
       "title": "The Da Vinci Code",
       "author": "Dan Brown",
       "category": "Mystery",
-      "isbn": "978-0307474278",
+      "isbn": 9780307474278,
       "createdAt": "2023-05-24T13:18:29.436Z",
       "editedAt": null,
       "isActive": false
@@ -15,7 +15,7 @@
       "title": "Dune",
       "author": "Frank Herbert",
       "category": "Science Fiction",
-      "isbn": "978-0441013593",
+      "isbn": 9780441013593,
       "createdAt": "2023-05-24T13:24:50.167Z",
       "editedAt": null,
       "isActive": true
@@ -25,7 +25,7 @@
       "title": "Gone Girl",
       "author": "Gillian Flynn",
       "category": "Thriller",
-      "isbn": "978-0307588371",
+      "isbn": 9780307588371,
       "createdAt": "2023-05-24T13:25:42.600Z",
       "editedAt": null,
       "isActive": false
@@ -35,7 +35,7 @@
       "title": "The Girl on the Train",
       "author": "Paula Hawkins",
       "category": "Thriller",
-      "isbn": "978-1594634024",
+      "isbn": 9781594634024,
       "createdAt": "2023-05-24T15:03:55.668Z",
       "editedAt": null,
       "isActive": true
@@ -45,7 +45,7 @@
       "title": "1984",
       "author": "George Orwell",
       "category": "Science Fiction",
-      "isbn": "978-0451524935",
+      "isbn": 9780451524935,
       "createdAt": "2023-05-24T15:17:12.305Z",
       "editedAt": null,
       "isActive": true
