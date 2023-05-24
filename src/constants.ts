@@ -1,4 +1,3 @@
-// icons
 export const HOME_ICON_ACTIVE =
   'https://raw.githubusercontent.com/nikachu404/books/main/src/assets/home-active.svg';
 
@@ -19,3 +18,5 @@ export const EYE_ICON =
 
 export const PLUS_ICON =
   'https://raw.githubusercontent.com/nikachu404/books/main/src/assets/plus.svg';
+
+export const API_URL = 'http://localhost:3000/books';
