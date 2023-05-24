@@ -1,0 +1,87 @@
+.book-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.7);
+
+  @media (min-width: 1000px) {
+    display: none;
+  }
+
+  &__content {
+    width: 80%;
+    padding: 30px;
+    border-radius: 20px;
+    background-color: #fff;
+  }
+
+  &__actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  &__button {
+    display: inline-block;
+    align-self: center;
+
+    width: 300px;
+    margin-top: 16px;
+    padding: 12px 24px;
+
+    border: none;
+    border-radius: 10px;
+
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+
+    color: #1e1d30;
+
+    cursor: pointer;
+
+    @media (max-width: 768px) {
+      width: 150px;
+    }
+
+    &--edit {
+      border-color: #d2f36b;
+      background-color: #d2f36b;
+    }
+
+    &--delete {
+      color: #fff;
+      border-color: #1e1d30;
+      background-color: #1e1d30;
+    }
+
+    &--deactivate {
+      color: #fff;
+      border-color: #9f95ef;
+      background-color: #9f95ef;
+    }
+
+    &--reactivate {
+      border-color: #9ef68e;
+      background-color: #9ef68e;
+    }
+  }
+
+  &__button-link {
+    display: inline-block;
+    align-self: center;
+  }
+
+  &__close-button {
+    display: flex;
+    justify-content: right;
+  }
+}
