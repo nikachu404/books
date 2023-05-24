@@ -16,27 +16,6 @@ export const Dashboard: React.FC = () => {
     loadBooks();
   }, [filter]);
 
-  // const loadBooks = () => {
-  //   let url = API_URL;
-
-  //   if (filter === 'active') {
-  //     url += '?isActive=true';
-  //   } else if (filter === 'deactivated') {
-  //     url += '?isActive=false';
-  //   }
-
-  //   fetch(url)
-  //     .then(response => response.json())
-  //     .then(data => {
-  //       setBooks(data);
-  //       setFilteredRecords(data.length);
-  //     });
-
-  //   fetch(API_URL)
-  //     .then(response => response.json())
-  //     .then(data => setTotalRecords(data.length));
-  // };
-
   const loadBooks = () => {
     let url = API_URL;
 
@@ -63,11 +42,8 @@ export const Dashboard: React.FC = () => {
       .catch(() => setFilteredRecords(0));
   };
 
-
   const deleteBook = (id: number) => {
-    fetch(`${API_URL}/${id}`, { method: 'DELETE' }).then(() =>
-      loadBooks(),
-    );
+    fetch(`${API_URL}/${id}`, { method: 'DELETE' }).then(() => loadBooks());
   };
 
   const toggleActivation = (book: Book, isActive: boolean) => {
