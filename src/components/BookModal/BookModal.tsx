@@ -21,6 +21,11 @@ export const BookModal: React.FC<Props> = ({
   const { id, title, author, category, isbn, createdAt, editedAt, isActive } =
     book;
 
+  const handleDeleteBook = (bookId: number) => {
+    onDeleteBook(bookId);
+    onCloseModal();
+  }
+
   return (
     <div className="book-modal">
       <div className="book-modal__content">
@@ -45,7 +50,7 @@ export const BookModal: React.FC<Props> = ({
             </button>
           </Link>
           <button
-            onClick={() => onDeleteBook(id)}
+            onClick={() => handleDeleteBook(id)}
             className="book-modal__button book-modal__button--delete">
             Delete
           </button>
