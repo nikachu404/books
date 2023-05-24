@@ -86,7 +86,6 @@ export const BookForm: React.FC = () => {
         setMessage('Failed to save record.');
       }
     } catch (error) {
-      console.error('Error:', error);
       setMessage('An error occurred. Please try again.');
     }
 
