@@ -51,8 +51,8 @@ export const BookForm: React.FC = () => {
     const formErrors = {
       title: book.title.trim() === '',
       author: book.author.trim() === '',
-      category: book.category.trim() === '',
-      isbn: book.isbn.trim() === '',
+      category: book.category === '',
+      isbn: book.isbn.toString().trim() === '',
     };
 
     if (Object.values(formErrors).some(error => error === true)) {
@@ -84,6 +84,7 @@ export const BookForm: React.FC = () => {
         }, 2000);
       } else {
         setMessage('Failed to save record.');
+        console.log('aaaaaaa');
       }
     } catch (error) {
       setMessage('An error occurred. Please try again.');
