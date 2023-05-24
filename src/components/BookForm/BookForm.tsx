@@ -21,6 +21,13 @@ export const BookForm: React.FC = () => {
     isActive: true,
   });
 
+  const [errors, setErrors] = useState({
+    title: false,
+    author: false,
+    category: false,
+    isbn: false,
+  });
+
   useEffect(() => {
     if (id) {
       fetch(`${API_URL}/${id}`)
@@ -40,6 +47,19 @@ export const BookForm: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    const formErrors = {
+      title: book.title.trim() === '',
+      author: book.author.trim() === '',
+      category: book.category.trim() === '',
+      isbn: book.isbn.trim() === '',
+    };
+
+    if (Object.values(formErrors).some(error => error === true)) {
+      setErrors(formErrors);
+      setMessage('Please fill in all the required fields.');
+      return;
+    }
 
     const requestOptions: RequestInit = {
       method: id ? 'PUT' : 'POST',
@@ -80,6 +100,13 @@ export const BookForm: React.FC = () => {
       editedAt: null,
       isActive: true,
     });
+
+    setErrors({
+      title: false,
+      author: false,
+      category: false,
+      isbn: false,
+    });
   };
 
   return (
@@ -92,9 +119,15 @@ export const BookForm: React.FC = () => {
           value={book.title}
           onChange={handleChange}
           autoComplete="off"
-          required
-          className="book-form__input"
+          className={`book-form__input ${
+            errors.title && 'book-form__input--error'
+          }`}
         />
+        {errors.title && (
+          <span className="book-form__error-message">
+            Please enter a book title.
+          </span>
+        )}
       </div>
 
       <div className="book-form__field">
@@ -105,9 +138,15 @@ export const BookForm: React.FC = () => {
           value={book.author}
           onChange={handleChange}
           autoComplete="off"
-          required
-          className="book-form__input"
+          className={`book-form__input ${
+            errors.author && 'book-form__input--error'
+          }`}
         />
+        {errors.author && (
+          <span className="book-form__error-message">
+            Please enter an author name.
+          </span>
+        )}
       </div>
 
       <div className="book-form__field">
@@ -116,8 +155,9 @@ export const BookForm: React.FC = () => {
           name="category"
           value={book.category}
           onChange={handleChange}
-          required
-          className="book-form__input">
+          className={`book-form__input ${
+            errors.category && 'book-form__input--error'
+          }`}>
           <option value="" disabled>
             Select a category
           </option>
@@ -127,6 +167,11 @@ export const BookForm: React.FC = () => {
           <option value="Romance">Romance</option>
           <option value="Thriller">Thriller</option>
         </select>
+        {errors.category && (
+          <span className="book-form__error-message">
+            Please select a category.
+          </span>
+        )}
       </div>
 
       <div className="book-form__field">
@@ -137,9 +182,15 @@ export const BookForm: React.FC = () => {
           value={book.isbn}
           onChange={handleChange}
           autoComplete="off"
-          required
-          className="book-form__input"
+          className={`book-form__input ${
+            errors.isbn && 'book-form__input--error'
+          }`}
         />
+        {errors.isbn && (
+          <span className="book-form__error-message">
+            Please enter an ISBN.
+          </span>
+        )}
       </div>
       <button type="submit" className="book-form__submit-button">
         {id ? 'Edit Book' : 'Add a Book'}
