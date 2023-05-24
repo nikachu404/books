@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { API_URL } from '../../constants';
 import { Book } from '../../types/Book';
 
 import './BookForm.scss';
@@ -22,7 +23,7 @@ export const BookForm: React.FC = () => {
 
   useEffect(() => {
     if (id) {
-      fetch(`http://localhost:3000/books/${id}`)
+      fetch(`${API_URL}/${id}`)
         .then(response => response.json())
         .then(data => setBook(data));
     }
@@ -52,7 +53,7 @@ export const BookForm: React.FC = () => {
 
     try {
       const response = await fetch(
-        `http://localhost:3000/books${id ? `/${id}` : ''}`,
+        `${API_URL}/${id ? `/${id}` : ''}`,
         requestOptions,
       );
 

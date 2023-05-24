@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Table } from '../../components';
 import { Book } from '../../types/Book';
-import { PLUS_ICON } from '../../constants';
+import { API_URL, PLUS_ICON } from '../../constants';
 
 import './Dashboard.scss';
 
@@ -17,7 +17,7 @@ export const Dashboard: React.FC = () => {
   }, [filter]);
 
   const loadBooks = () => {
-    let url = 'http://localhost:3000/books';
+    let url = API_URL;
 
     if (filter === 'active') {
       url += '?isActive=true';
@@ -32,19 +32,19 @@ export const Dashboard: React.FC = () => {
         setFilteredRecords(data.length);
       });
 
-    fetch('http://localhost:3000/books')
+    fetch(API_URL)
       .then(response => response.json())
       .then(data => setTotalRecords(data.length));
   };
 
   const deleteBook = (id: number) => {
-    fetch(`http://localhost:3000/books/${id}`, { method: 'DELETE' }).then(() =>
+    fetch(`${API_URL}/${id}`, { method: 'DELETE' }).then(() =>
       loadBooks(),
     );
   };
 
   const toggleActivation = (book: Book, isActive: boolean) => {
-    fetch(`http://localhost:3000/books/${book.id}`, {
+    fetch(`${API_URL}/${book.id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
