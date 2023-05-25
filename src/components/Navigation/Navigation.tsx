@@ -2,13 +2,6 @@ import React from 'react';
 import { NavLink, useLocation, useParams } from 'react-router-dom';
 import cn from 'classnames';
 
-import {
-  HOME_ICON,
-  HOME_ICON_ACTIVE,
-  PENCIL_ICON,
-  PENCIL_ICON_ACTIVE,
-} from '../../constants';
-
 import './Navigation.scss';
 
 export const Navigation: React.FC = () => {
@@ -25,7 +18,7 @@ export const Navigation: React.FC = () => {
         <ul className="navigation__nav-list">
           <li className="navigation__nav-item">
             <img
-              src={isDashboardActive ? HOME_ICON_ACTIVE : HOME_ICON}
+              src={`./assets/${isDashboardActive ? 'home-active.svg' : 'home.svg'}`}
               alt="dashboard"
               className="navigation__icon"
             />
@@ -42,7 +35,7 @@ export const Navigation: React.FC = () => {
 
           <li className="navigation__nav-item">
             <img
-              src={isAddBookActive ? PENCIL_ICON_ACTIVE : PENCIL_ICON}
+              src={`./assets/${isAddBookActive ? 'pencil-active.svg' : 'pencil.svg'}`}
               alt="add"
               className="navigation__icon"
             />

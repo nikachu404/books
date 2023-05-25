@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link, useLocation, useParams } from 'react-router-dom';
 import { BookForm } from '../../components';
-import { HOME_DARK } from '../../constants';
 
 import './AddBook.scss';
 
@@ -23,7 +22,7 @@ export const AddBook: React.FC = () => {
       <Link to={'/'} className="add-book__home-link">
         <div className="add-book__home-button">
           <img
-            src={HOME_DARK}
+            src="./assets/home-dark.svg"
             alt="add"
             className="add-book__home-icon"
             color="red"

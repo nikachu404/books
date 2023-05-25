@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import moment from 'moment';
 import { BookModal } from '../BookModal/BookModal';
 import { Book } from '../../types/Book';
-import { EYE_ICON } from '../../constants';
 
 import './Table.scss';
 
@@ -92,7 +91,7 @@ export const Table: React.FC<Props> = ({
               </td>
               <td className="table__open">
                 <img
-                  src={EYE_ICON}
+                  src="./assets/eye.svg"
                   alt="open"
                   className="table__eye"
                   onClick={() => openModal(item)}

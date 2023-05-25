@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Table } from '../../components';
 import { Book } from '../../types/Book';
-import { API_URL, PLUS_ICON } from '../../constants';
+import { API_URL } from '../../constants';
 
 import './Dashboard.scss';
 
@@ -108,7 +108,11 @@ export const Dashboard: React.FC = () => {
 
       <Link to={'/add'} className="dashboard__add-link">
         <div className="dashboard__add-button">
-          <img src={PLUS_ICON} alt="add" className="dashboard__add-plus" />
+          <img
+            src="./assets/plus.svg"
+            alt="add"
+            className="dashboard__add-plus"
+          />
         </div>
       </Link>
     </div>
