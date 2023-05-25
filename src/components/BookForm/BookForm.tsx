@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import cn from 'classnames';
 import { API_URL } from '../../constants';
 import { Book } from '../../types/Book';
 
@@ -63,19 +64,19 @@ export const BookForm: React.FC = () => {
       isbn: book.isbn.toString().trim() === '',
     };
 
-    if (Object.values(formErrors).some(error => error === true)) {
+    if (Object.values(formErrors).some(Boolean)) {
       setErrors(formErrors);
       setMessage('Please fill in all the required fields.');
       return;
     }
 
+    const date = new Date();
+
     const requestOptions: RequestInit = {
       method: id ? 'PUT' : 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(
-        id
-          ? { ...book, editedAt: new Date() }
-          : { ...book, createdAt: new Date() },
+        id ? { ...book, editedAt: date } : { ...book, createdAt: date },
       ),
     };
 
@@ -126,9 +127,9 @@ export const BookForm: React.FC = () => {
           value={book.title}
           onChange={handleChange}
           autoComplete="off"
-          className={`book-form__input ${
-            errors.title && 'book-form__input--error'
-          }`}
+          className={cn('book-form__input', {
+            'book-form__input--error': errors.title,
+          })}
         />
         {errors.title && (
           <span className="book-form__error-message">
@@ -145,9 +146,9 @@ export const BookForm: React.FC = () => {
           value={book.author}
           onChange={handleChange}
           autoComplete="off"
-          className={`book-form__input ${
-            errors.author && 'book-form__input--error'
-          }`}
+          className={cn('book-form__input', {
+            'book-form__input--error': errors.author,
+          })}
         />
         {errors.author && (
           <span className="book-form__error-message">
@@ -162,9 +163,9 @@ export const BookForm: React.FC = () => {
           name="category"
           value={book.category}
           onChange={handleChange}
-          className={`book-form__input ${
-            errors.category && 'book-form__input--error'
-          }`}>
+          className={cn('book-form__input', {
+            'book-form__input--error': errors.category,
+          })}>
           <option value="" disabled>
             Select a category
           </option>
@@ -189,9 +190,9 @@ export const BookForm: React.FC = () => {
           value={book.isbn}
           onChange={handleChange}
           autoComplete="off"
-          className={`book-form__input ${
-            errors.isbn && 'book-form__input--error'
-          }`}
+          className={cn('book-form__input', {
+            'book-form__input--error': errors.isbn,
+          })}
         />
         {errors.isbn && (
           <span className="book-form__error-message">
