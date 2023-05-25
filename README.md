@@ -41,4 +41,3 @@ npm run dev
 json-server --watch db.json
 ```
 5. Open application in your browser `http://127.0.0.1:5173/books/`
-

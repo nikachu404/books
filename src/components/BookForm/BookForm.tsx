@@ -28,12 +28,20 @@ export const BookForm: React.FC = () => {
     isbn: false,
   });
 
-  useEffect(() => {
+  const loadSelectedBookInfo = async () => {
     if (id) {
-      fetch(`${API_URL}/${id}`)
-        .then(response => response.json())
-        .then(data => setBook(data));
+      try {
+        const response = await fetch(`${API_URL}/${id}`);
+        const data = await response.json();
+        setBook(data);
+      } catch (error) {
+        console.error(error);
+      }
     }
+  };
+
+  useEffect(() => {
+    loadSelectedBookInfo();
   }, [id]);
 
   const handleChange = (
@@ -84,7 +92,6 @@ export const BookForm: React.FC = () => {
         }, 2000);
       } else {
         setMessage('Failed to save record.');
-        console.log('aaaaaaa');
       }
     } catch (error) {
       setMessage('An error occurred. Please try again.');
